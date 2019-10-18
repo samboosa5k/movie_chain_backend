@@ -9,19 +9,41 @@ class TheaterController extends Controller
 {
     public function index()
     {
-
-        //  PARAMETERS
+        //  SHOWS ALL THEATERS
 
         //  INIT QUERY
         $query = DB::table('theaters')
-            ->select('id', 'name');
+            ->select('id', 'name', 'slug');
 
         $all = $query->get();
 
         //  MODIFY QUERY
-        return $all;
 
-        //  REQUIREMENTS
-        //  List of theaters = ID && NAME
+        //  RETURN
+        return $all;
+    }
+
+    public function single(Request $request)
+    {
+        //  PARAMETSER
+        $whichTheater = $request->input('theaterName');
+
+        //  INIT QUERY - theater select
+        $query = DB::table('theaters')
+            ->where('name', $whichTheater);
+
+        //  INIT QUERY - screenings select
+        $theaterId = $query->pluck('id');
+        $query_screenings = DB::table('screenings')
+            ->where('theater_id', '=', 1);
+
+        $theater = $query->get();
+        $screenings = $query_screenings->get();
+
+        //  RETURN
+        return [
+            $theater,
+            'screenings' => $screenings,
+        ];
     }
 }

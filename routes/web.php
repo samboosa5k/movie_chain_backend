@@ -12,7 +12,11 @@
 */
 
 //  THEATER
+//  all
 Route::get('/api/theater', 'TheaterController@index');
+//  individual
+Route::get('/api/theater/single', 'TheaterController@single');
+
 
 //  MOVIES
 Route::get('/api/movies', 'MovieController@index');
