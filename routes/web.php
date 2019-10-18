@@ -11,4 +11,8 @@
 |
 */
 
+//  THEATER
 Route::get('/api/theater', 'TheaterController@index');
+
+//  MOVIES
+Route::get('/api/movies', 'MovieController@index');
