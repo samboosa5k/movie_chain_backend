@@ -27,6 +27,7 @@ class TheaterController extends Controller
     {
         //  PARAMETSER
         $whichTheater = $request->input('theaterName');
+        $date = $request->input('date');
 
         //  INIT QUERY - theater select
         $query = DB::table('theaters')
@@ -35,10 +36,14 @@ class TheaterController extends Controller
         //  INIT QUERY - screenings select
         $theaterId = $query->pluck('id');
         $query_screenings = DB::table('screenings')
-            ->where('theater_id', '=', 3);
+            ->where('theater_id', '=', $theaterId)
+            ->where('begins_at', 'like', "%{$date}%")
+            ->leftJoin('movies', 'screenings.movie_id', '=', 'movies.id');
+
 
         $theater = $query->get();
         $screenings = $query_screenings->get();
+
 
         //  RETURN
         return [

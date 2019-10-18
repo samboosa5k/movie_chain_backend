@@ -15,7 +15,7 @@
 //  all
 Route::get('/api/theater', 'TheaterController@index');
 //  individual
-Route::get('/api/theater/single', 'TheaterController@single');
+Route::get('/api/screenings/single', 'TheaterController@single');
 
 
 //  MOVIES
