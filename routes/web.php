@@ -20,3 +20,4 @@ Route::get('/api/screenings/single', 'TheaterController@single');
 
 //  MOVIES
 Route::get('/api/movies', 'MovieController@index');
+Route::get('/api/moviepage', 'MoviePageController@index');
