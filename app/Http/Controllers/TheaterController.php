@@ -35,7 +35,7 @@ class TheaterController extends Controller
         //  INIT QUERY - screenings select
         $theaterId = $query->pluck('id');
         $query_screenings = DB::table('screenings')
-            ->where('theater_id', '=', 1);
+            ->where('theater_id', '=', 3);
 
         $theater = $query->get();
         $screenings = $query_screenings->get();

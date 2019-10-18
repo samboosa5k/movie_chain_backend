@@ -15,6 +15,7 @@ class MovieController extends Controller
 
         //  INIT QUERY
         $query = DB::table('movies')
+            ->select('movies.id', 'movies.name', 'movies.year', 'movies.poster_url', 'movies.rating', 'genres.id', 'genres.name as genre', 'genre_movie.genre_id', 'genre_movie.movie_id')
             ->leftJoin('genre_movie', 'movies.id', '=', 'genre_movie.movie_id')
             ->leftJoin('genres', 'genre_movie.genre_id', '=', 'genres.id')
             ->limit(20);
